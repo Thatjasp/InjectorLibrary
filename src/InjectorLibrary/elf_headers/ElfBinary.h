@@ -4,12 +4,12 @@
 #include <filesystem>
 namespace InjectorLibrary {
 
-class ElfBinary : public IBinaryFile {
+class ElfBinary : public IBinaryFile<ElfBinary> {
 public:
     ElfBinary(std::filesystem::path);
     void changeEntryPoint(int address) override;
     InjectionCave getInjectionCave() override;
-    std::any getHeaderManager() override;
+    ElfHeaderManager getHeaderManager();
 
 private:
     ElfHeaderManager m_elfHeaderManager;

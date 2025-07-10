@@ -26,7 +26,6 @@ set(${PROJECT_NAME}_SOURCE_FILES
 ./source/ElfHeaderManager.cpp
 ./source/ElfProgramHeader.cpp
 ./source/ElfSectionHeader.cpp
-./source/Injector.cpp
 )
 
 add_library(${PROJECT_NAME} STATIC  ${${PROJECT_NAME}_SOURCE_FILES})

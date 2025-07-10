@@ -1,4 +1,5 @@
 #include "ElfBinary.h"
+#include "ElfHeaderManager.h"
 #include "IBinaryFile.h"
 #include <filesystem>
 
@@ -26,7 +27,7 @@ InjectionCave ElfBinary::getInjectionCave()
     return { .start = programHeaderSize + programHeaderOffset + 1, .end = sectionHeaderOffset };
 }
 
-std::any ElfBinary::getHeaderManager()
+ElfHeaderManager ElfBinary::getHeaderManager()
 {
     return m_elfHeaderManager;
 }

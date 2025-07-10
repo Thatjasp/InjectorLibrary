@@ -1,5 +1,4 @@
 #pragma once
-#include <any>
 #include <filesystem>
 #include <iosfwd>
 namespace InjectorLibrary {
@@ -7,7 +6,7 @@ struct InjectionCave {
     std::streampos start;
     std::streampos end;
 };
-
+template <typename T>
 class IBinaryFile {
 public:
     IBinaryFile(std::filesystem::path path)
@@ -20,7 +19,12 @@ public:
     {
         return m_path;
     }
-    virtual std::any getHeaderManager() = 0;
+    template <typename U>
+    U getHeaderManager()
+    {
+        T& derivedBinaryFile = static_cast<T&>(*this);
+        return derivedBinaryFile.getHeaderManager();
+    }
 
 protected:
     std::filesystem::path m_path;

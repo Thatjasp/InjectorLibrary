@@ -14,5 +14,5 @@ add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} InjectorLibrary)
 
 file(COPY "res/hello" DESTINATION "./")
-file(COPY "res/inject" DESTINATION "./")
+#file(COPY "res/inject" DESTINATION "./")
 file(COPY "res/infect" DESTINATION "./")

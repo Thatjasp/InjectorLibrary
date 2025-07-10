@@ -1,9 +1,11 @@
 #include "ElfCodeCaveAlg.h"
+#include "ElfBinary.h"
 #include "ICodeCaveAlg.h"
 #include <fstream>
 #include <iostream>
 namespace InjectorLibrary {
-ElfCodeCaveAlg::ElfCodeCaveAlg(std::shared_ptr<IBinaryFile> binaryFile)
+
+ElfCodeCaveAlg::ElfCodeCaveAlg(std::shared_ptr<IBinaryFile<ElfBinary>> binaryFile)
     : ICodeCaveAlg(binaryFile)
 {
 }
@@ -47,7 +49,6 @@ std::optional<CodeCave> ElfCodeCaveAlg::findCave()
             curSize = 0;
         }
     }
-    std::cout << "CODE CAVE CLOSED" << std::endl;
     binaryFileStream.close();
     return maxCave;
 }

@@ -5,13 +5,14 @@
 #include <memory>
 int main()
 {
-    std::shared_ptr<InjectorLibrary::IBinaryFile> p_elfBinary = std::make_shared<InjectorLibrary::ElfBinary>("./hello");
+    using namespace InjectorLibrary;
+    std::shared_ptr<IBinaryFile<ElfBinary>> p_elfBinary = std::make_shared<InjectorLibrary::ElfBinary>("./hello");
 
-    std::shared_ptr<InjectorLibrary::IBinaryFile> p_infectedBinary = std::make_shared<InjectorLibrary::ElfBinary>("./infect");
+    std::shared_ptr<IBinaryFile<ElfBinary>> p_infectedBinary = std::make_shared<ElfBinary>("./infect");
 
-    InjectorLibrary::ElfCodeCaveAlg codeCaveAlg(p_elfBinary);
+    ElfCodeCaveAlg codeCaveAlg(p_elfBinary);
 
-    InjectorLibrary::ElfHeaderManager elfHeaderManager = std::any_cast<InjectorLibrary::ElfHeaderManager>(p_elfBinary->getHeaderManager());
+    ElfHeaderManager elfHeaderManager = p_elfBinary->getHeaderManager<ElfHeaderManager>();
 
     auto pHdr = elfHeaderManager.getProgramHeader().getFirstLoadableSegment();
 

@@ -8,13 +8,14 @@ struct CodeCave {
     std::streampos endPos;
     uint64_t size;
 };
+template <typename T>
 class ICodeCaveAlg {
 public:
-    ICodeCaveAlg(std::shared_ptr<IBinaryFile> binaryFile)
+    ICodeCaveAlg(std::shared_ptr<IBinaryFile<T>> binaryFile)
         : m_binaryFile(binaryFile) { };
     virtual std::optional<CodeCave> findCave() = 0;
 
 protected:
-    std::shared_ptr<IBinaryFile> m_binaryFile;
+    std::shared_ptr<IBinaryFile<T>> m_binaryFile;
 };
 }

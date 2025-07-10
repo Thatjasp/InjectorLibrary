@@ -46,7 +46,6 @@ ElfHeaderManager::ElfHeaderManager(std::filesystem::path binaryPath)
     m_sectionHeader = std::move(sectionHeaders);
     m_programHeader = std::move(programHeaders);
     m_elfHeader = std::move(ehdr);
-    std::cout << "CLOSESD" << std::endl;
     binaryStream.close();
 }
 void ElfHeaderManager::changeEntryPoint(int address)
