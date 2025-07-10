@@ -9,17 +9,15 @@ Injector::Injector(std::shared_ptr<IBinaryFile> binaryFile, std::shared_ptr<IBin
     , mp_payloadFile(payloadFile)
 {
 }
+
 void Injector::injectTarget(int address)
 {
     std::vector<char> payloadVec = getByteData(mp_payloadFile);
     std::ofstream cleanStream(mp_binaryFile->getPath(), std::ios::binary | std::ios::out | std::ios_base::in);
-    std::cout << "Code Cave Start Pos" << std::hex << m_curCodeCave.startPos << "\n";
-    std::cout << "Code Cave end Pos" << std::hex << m_curCodeCave.endPos << "\n";
     cleanStream.seekp(m_curCodeCave.startPos, std::ios_base::beg);
     cleanStream.write(payloadVec.data(), payloadVec.size());
     cleanStream.close();
     mp_binaryFile->changeEntryPoint(address);
-    //  TODO
 }
 
 std::vector<char> Injector::getByteData(const std::shared_ptr<IBinaryFile>& p_binary)

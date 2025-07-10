@@ -47,7 +47,6 @@ std::optional<CodeCave> ElfCodeCaveAlg::findCave()
             curSize = 0;
         }
     }
-    std::cout << "CODE CAVE CLOSED" << std::endl;
     binaryFileStream.close();
     return maxCave;
 }
